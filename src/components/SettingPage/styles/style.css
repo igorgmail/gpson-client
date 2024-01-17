@@ -1,0 +1,171 @@
+
+.all-white-input-style {
+  outline: none;
+  /* border: none; */
+  /* Что бы ни менялся размер при focus */
+  border: 2px solid #ffffff;
+  padding: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.all-white-input-style:focus {
+  outline: none;
+  border: 2px solid #1976D2;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.all-white-input--choose-style {
+  outline: none;
+  /* border: none; */
+  /* Что бы ни менялся размер при focus */
+  padding: 8px;
+  border: 2px solid #fd3232;
+  border-radius: 4px;
+  box-shadow: 0 0 8px 0 rgba(243, 74, 74, 0.6);
+  user-select: none;
+}
+.carblock-icon-cars {
+  background-color: none;
+  /* borderRadius: '8px', */
+  /* color: 'white', */
+  padding: 8px;
+  /* border: 'none', */
+  cursor: pointer
+}
+
+.company-block--dis-input {
+  background-color: #078c75;
+  border-radius: 8px;
+  color: white;
+  padding: 8px;
+  border: 2px solid transparent;
+  }
+
+.company-name--dis {
+  cursor: pointer;
+}
+  .company-block--name-active-input {
+    background-color: #ffffff;
+    border-radius: 8px;
+    color: rgb(0, 0, 0);
+    padding: 8px;
+    border: 2px solid rgb(243, 76, 154);
+    box-shadow: 0 0 8px 0 rgba(243, 74, 74, 0.6);
+  }
+  
+  .company-block--name-active-input:focus {
+    outline-width: 0;
+  }
+  
+/* Для отображения Alert */
+  #alert-portal {
+    position: fixed;
+    top: 40px;
+    /* bottom: 40px; */
+    /* Расстояние от нижнего края экрана */
+    left: 50%;
+    transform: translateX(-50%);
+    /* Центрирование Alert по горизонтали */
+    z-index: 2100;
+    /* Убедитесь, что Alert находится поверх других элементов */
+}
+.dialog-modal--content {
+  text-align: center;
+}
+
+
+.cars-start-icon--block {
+  display: flex;
+  align-items: center;
+    justify-content: center;
+}
+
+/* Модалка с иконками авто */
+.cars-popup--wrap {
+  border: 2px solid #078c75;
+  border-radius: 8px;
+  background-color: #e7e7e7;
+  max-width: 90%;
+}
+
+.cars-popup--item {
+  display: flex;
+  align-items: center;
+  /* width: 4rem; */
+  cursor: pointer;
+  border: 2px solid #e7e7e7;
+  border-radius: 4px;
+  background-color: #ffffff;
+    height: 100%;
+}
+
+.cars-popup--item:hover {
+  border: 2px solid #078c75;
+  border-radius: 4px;
+}
+
+.cars-popup--image {
+  width: 1.5rem;
+  transform: rotate(90deg);
+}
+.icon-car--in-modal {
+  width: 1rem;
+  transform: rotate(90deg);
+
+}
+
+.modal-input {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  background-color: transparent;
+  outline: 0;
+  margin: 0;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  text-decoration: none;
+  font-family: Roboto, Helvetica Neue, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  /* text-transform: uppercase; */
+  min-width: 64px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border: 1px solid rgba(25, 118, 210, 0.5);
+  color: #1976d2;
+}
+
+.modal-input:focus {
+  outline: none;
+  border: 1px solid #1976D2;
+  border-radius: 8px;
+  box-shadow: 0 0 8px 0 rgba(71, 89, 250, 0.6);
+}
+
+.modal-input--car-icon {
+  margin-left: 1rem;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

@@ -1,0 +1,104 @@
+{
+  "name": "leaflet",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "env-cmd -f .env.development react-scripts start",
+    "build": "env-cmd -f .env.production react-scripts build",
+    "format:check": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:check": "eslint --fix --max-warnings 0 'src/**/*.{js,jsx,ts,tsx}'"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.5",
+    "@mui/icons-material": "^5.14.0",
+    "@mui/material": "^5.14.0",
+    "@mui/x-date-pickers": "^6.12.1",
+    "@react-leaflet/core": "^2.1.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "axios": "^1.5.1",
+    "leaflet": "^1.9.4",
+    "leaflet-rotatedmarker": "^0.2.0",
+    "luxon": "^3.4.3",
+    "material-ui-popup-state": "^5.0.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
+    "react-leaflet-cluster": "^2.1.0",
+    "react-leaflet-custom-control": "^1.4.0",
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.14.1",
+    "react-scripts": "5.0.1",
+    "uuid": "^9.0.1",
+    "web-vitals": "^2.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "@redux-devtools/extension": "^3.2.5",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
+    "@types/leaflet": "^1.9.3",
+    "@types/leaflet-rotatedmarker": "^0.2.4",
+    "@types/leaflet-routing-machine": "^3.2.4",
+    "@types/luxon": "^3.3.4",
+    "@types/node": "^16.18.37",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/react-leaflet": "^3.0.0",
+    "@types/react-window": "^1.8.5",
+    "@types/redux-logger": "^3.0.12",
+    "@types/uuid": "^9.0.4",
+    "commitlint": "^17.6.6",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "redux-logger": "^3.0.6",
+    "typescript": "^4.4.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "prettier"
+    ],
+    "rules": {
+      "no-console": "warn"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,css,scss}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix --max-warnings 0"
+    ],
+    "*.md": "prettier --write"
+  },
+  "prettier": {
+    "endOfLine": "lf",
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "printWidth": 100,
+    "singleQuote": true
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
