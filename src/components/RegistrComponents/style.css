@@ -1,0 +1,14 @@
+.reg-default-form {
+  display: contents;
+}
+
+.reg-default-form--button {
+  padding: 12px;
+  background-color: #078c75;
+  margin-top: 1rem;
+}
+.gpson-form-image {
+  border-radius: 8px;
+  /* border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px; */
+}
