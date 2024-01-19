@@ -67,7 +67,9 @@ const LoginForm = () => {
             width: ['80%', '50%', '40%', '30%']
           }}
           display={'flex'} flexDirection={'column'} gap={'1rem'}>
+
           <GpsonImage></GpsonImage>
+
           <EmailInput value={email} error={emailError} changeHandler={emailChangeHandler}></EmailInput>
 
           <PasswordInput value={password} error={passwordError} changeHandler={passwordChangeHandler}></PasswordInput>
