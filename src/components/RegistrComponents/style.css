@@ -1,0 +1,9 @@
+.reg-default-form {
+  display: contents;
+}
+
+.reg-default-form--button {
+  padding: 16px;
+  background-color: #078c75;
+  margin-top: 1rem;
+}
