@@ -11,10 +11,10 @@ import GpsonImage from './Components/GpsonImage';
 const LoginForm = () => {
 
   const [email, setEmail] = useState('')
-  const [emailError, setEmailError] = useState({ status: false, msg: '' })
+  const [emailError, setEmailError] = useState({ error: false, msg: '' })
 
   const [password, setPassword] = useState('')
-  const [passwordError, setPasswordError] = useState({ status: false, msg: '' })
+  const [passwordError, setPasswordError] = useState({ error: false, msg: '' })
 
   const { validate } = useFormValidation()
   const navigate = useNavigate();
@@ -35,24 +35,15 @@ const LoginForm = () => {
     const isEmailValid = validate('email', email)
     const isPasswordValid = validate('password', password)
 
+    setEmailError({ ...isEmailValid })
+    setPasswordError({ ...isPasswordValid })
+
+
     // All Ok
-    if (isEmailValid.status === 'ok' && isPasswordValid.status === 'ok') {
+    if (!isEmailValid.error && !isPasswordValid.error) {
       console.log("Все поля валидны");
     }
 
-    // email
-    if (isEmailValid.status === 'ok') setEmailError({ status: false, msg: isEmailValid.msg })
-    if (isEmailValid.status === 'error') {
-      setEmailError({ status: true, msg: isEmailValid.msg })
-    } else {
-      setEmailError({ status: false, msg: '' })
-    }
-
-    // password
-    if (isPasswordValid.status === 'ok') setPasswordError({ status: false, msg: isEmailValid.msg })
-    if (isPasswordValid.status === 'error') {
-      setPasswordError({ status: true, msg: isPasswordValid.msg })
-    }
 
   }
 
@@ -80,14 +71,14 @@ const LoginForm = () => {
 
           <EmailInput
             value={email}
-            error={emailError}
+            emailError={emailError}
             changeHandler={emailChangeHandler}
             key={'email-input-key'}
           ></EmailInput>
 
           <PasswordInput
             value={password}
-            error={passwordError}
+            passwordError={passwordError}
             changeHandler={passwordChangeHandler}
             key={'password-input-key'}
           ></PasswordInput>

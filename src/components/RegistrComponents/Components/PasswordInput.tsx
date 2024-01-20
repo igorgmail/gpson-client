@@ -4,12 +4,12 @@ import { Dispatch, FC, SetStateAction, useState } from "react"
 
 interface IPasswordInput {
   value: string
-  error: { status: boolean, msg: string }
+  passwordError: { error: boolean, msg: string }
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void
   setShowConfirmPassword?: Dispatch<SetStateAction<boolean>>
 }
 
-const PasswordInput: FC<IPasswordInput> = ({ value, error, changeHandler, setShowConfirmPassword }) => {
+const PasswordInput: FC<IPasswordInput> = ({ value, passwordError, changeHandler, setShowConfirmPassword }) => {
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -18,7 +18,6 @@ const PasswordInput: FC<IPasswordInput> = ({ value, error, changeHandler, setSho
       if (setShowConfirmPassword) {
         setShowConfirmPassword(!show)
       }
-      console.log("▶ ⇛ setShowConfirmPassword(!show):", !show);
       return !show
     })
 
@@ -40,7 +39,7 @@ const PasswordInput: FC<IPasswordInput> = ({ value, error, changeHandler, setSho
   }
 
   return (
-    <FormControl variant="outlined" error={error.status}>
+    <FormControl variant="outlined" error={passwordError.error}>
       <OutlinedInput
         onChange={changeHandler}
         value={value}
@@ -51,7 +50,7 @@ const PasswordInput: FC<IPasswordInput> = ({ value, error, changeHandler, setSho
         }}
         style={{
           ...inputDefaultStyle,
-          ...(error.status ? inputError : {})
+          ...(passwordError.error ? inputError : {})
         }}
         endAdornment={
           <InputAdornment position="end">
@@ -66,7 +65,7 @@ const PasswordInput: FC<IPasswordInput> = ({ value, error, changeHandler, setSho
           </InputAdornment>
         }
       />
-      <FormHelperText>{error.status ? error.msg : 'пароль'}</FormHelperText>
+      <FormHelperText>{passwordError.error ? passwordError.msg : 'пароль'}</FormHelperText>
     </FormControl>
   );
 }

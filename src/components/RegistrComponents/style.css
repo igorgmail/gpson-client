@@ -5,6 +5,7 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #078c75 inset !important;
   -webkit-text-fill-color: #fff
 }
+
 .reg-default-form {
   display: contents;
 }
@@ -21,6 +22,7 @@ input:-webkit-autofill:active {
   /* border-top-left-radius: 8px;
   border-bottom-left-radius: 8px; */
 }
+
 .checkbox-text,
 .back-text {
   font-family: 'Roboto', sans-serif;
@@ -31,6 +33,23 @@ input:-webkit-autofill:active {
   align-items: center;
 }
 
+.checkbox-text--error {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  /* font-weight: 500; */
+  margin: 0;
+  display: flex;
+  align-items: center;
+  color: red;
+}
+
+.checkbox-text--error::after {
+  content: '*';
+  color: red;
+  font-size: 12px;
+
+  margin-left: 4px;
+}
 .cp {
   cursor: pointer;
 }

@@ -3,12 +3,12 @@ import { FC } from "react"
 
 interface IConfirmPassword {
   value: string
-  error: { status: boolean, msg: string }
+  confirmPassError: { error: boolean, msg: string }
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void
   showConfirmPass?: boolean
 }
 
-const ConfirmPassword: FC<IConfirmPassword> = ({ value, error, changeHandler, showConfirmPass }) => {
+const ConfirmPassword: FC<IConfirmPassword> = ({ value, confirmPassError, changeHandler, showConfirmPass }) => {
 
   const inputDefaultStyle = {
     backgroundColor: '#078c75',
@@ -22,7 +22,7 @@ const ConfirmPassword: FC<IConfirmPassword> = ({ value, error, changeHandler, sh
   }
 
   return (
-    <FormControl variant="outlined" error={error.status}>
+    <FormControl variant="outlined" error={confirmPassError.error}>
       <OutlinedInput
         onChange={changeHandler}
         value={value}
@@ -33,11 +33,11 @@ const ConfirmPassword: FC<IConfirmPassword> = ({ value, error, changeHandler, sh
         }}
         style={{
           ...inputDefaultStyle,
-          ...(error.status ? inputError : {})
+          ...(confirmPassError.error ? inputError : {})
         }}
 
       />
-      <FormHelperText>{error.status ? error.msg : 'повторите пароль'}</FormHelperText>
+      <FormHelperText>{confirmPassError.error ? confirmPassError.msg : 'повторите пароль'}</FormHelperText>
     </FormControl>
   );
 }

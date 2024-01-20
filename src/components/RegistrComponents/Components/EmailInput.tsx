@@ -3,11 +3,11 @@ import { FC } from "react"
 
 interface IEmailInput {
   value: string
-  error: { status: boolean, msg: string }
+  emailError: { error: boolean, msg: string }
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const EmailInput: FC<IEmailInput> = ({ value, error, changeHandler }) => {
+const EmailInput: FC<IEmailInput> = ({ value, emailError, changeHandler }) => {
 
   const inputDefaultStyle = {
     backgroundColor: '#078c75',
@@ -24,10 +24,10 @@ const EmailInput: FC<IEmailInput> = ({ value, error, changeHandler }) => {
       onChange={changeHandler}
       value={value}
       // required
-      error={error.status}
+      error={emailError.error}
       name="email"
       // id="outlined-start-adornment"
-      helperText={error.msg || 'e-mail'}
+      helperText={emailError.msg || 'e-mail'}
       FormHelperTextProps={{
         style: {
           marginTop: '6px'
@@ -41,7 +41,7 @@ const EmailInput: FC<IEmailInput> = ({ value, error, changeHandler }) => {
       InputProps={{
         style: {
           ...inputDefaultStyle,
-          ...(error.status ? inputError : {})
+          ...(emailError.error ? inputError : {})
         }
       }}
     />

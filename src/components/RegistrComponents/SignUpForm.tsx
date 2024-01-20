@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { SetStateAction, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import useFormValidation from "./useFormValidation"
@@ -15,18 +15,22 @@ import RulesModal from "./RulesModal"
 const SignUpForm = () => {
 
   const [email, setEmail] = useState('')
-  const [emailError, setEmailError] = useState({ status: false, msg: '' })
+  const [emailError, setEmailError] = useState({ error: false, msg: '' })
 
   const [password, setPassword] = useState('')
-  const [passwordError, setPasswordError] = useState({ status: false, msg: '' })
+  const [passwordError, setPasswordError] = useState({ error: false, msg: '' })
 
   const [confirmPass, setConfirmPass] = useState('')
-  const [confirmPassError, setConfirmPassError] = useState({ status: false, msg: '' })
+  const [confirmPassError, setConfirmPassError] = useState({ error: false, msg: '' })
   const [showConfirmPass, setShowConfirmPass] = useState(false)
 
   const [rulesOpen, setRulesOpen] = useState(false);
   const [checkRules, setCheckRules] = useState(false)
+  const [checkRulesError, setCheckRulesError] = useState(false)
+
   const [checkGetMesg, setGetCheckMesg] = useState(false)
+  const [checkGetMesgError, setGetCheckMesgError] = useState(false)
+
 
   const { validate } = useFormValidation()
   const navigate = useNavigate();
@@ -46,61 +50,60 @@ const SignUpForm = () => {
     setConfirmPass(target.value)
   }
 
-  const submitHandler = (e: React.FormEvent) => {
-    e.preventDefault()
+  const checkValidation = () => {
 
     const isEmailValid = validate('email', email)
     const isPasswordValid = validate('password', password)
     const isConfirmPassValid = validate('confirm-password', confirmPass)
 
-    // email
-    if (isEmailValid.status === 'ok') setEmailError({ status: false, msg: isEmailValid.msg })
-    if (isEmailValid.status === 'error') {
-      setEmailError({ status: true, msg: isEmailValid.msg })
-    } else {
-      setEmailError({ status: false, msg: '' })
-    }
-
-    // password
-    if (isPasswordValid.status === 'ok') setPasswordError({ status: false, msg: isEmailValid.msg })
-    if (isPasswordValid.status === 'error') {
-      setPasswordError({ status: true, msg: isPasswordValid.msg })
-    }
-    // confirm password
-    if (isConfirmPassValid.status === 'ok') setConfirmPassError({ status: false, msg: isEmailValid.msg })
-    if (isConfirmPassValid.status === 'error') {
-      setConfirmPassError({ status: true, msg: isConfirmPassValid.msg })
-    }
+    setEmailError({ ...isEmailValid })
+    setPasswordError({ ...isPasswordValid })
+    setConfirmPassError({ ...isConfirmPassValid })
 
     if (password !== confirmPass) {
-      setConfirmPassError({ status: true, msg: 'Пароли не совпадают' })
+      setConfirmPassError({ error: true, msg: 'Пароли не совпадают' })
+    }
+    if (!isEmailValid.error && !isPasswordValid.error && password === confirmPass) {
+      return true
     }
 
-
-
+    return false
   }
 
-  const isAllValidAndFull = () => {
-    // All Ok
-    if (isEmailValid.status === 'ok'
-      && isPasswordValid.status === 'ok'
-      && isConfirmPassValid.status === 'ok'
-      && password === confirmPass
-    ) {
-      // checkboxes
-      if (regConfig.isRulesAgreeRequired && regConfig.isGetMessageAgreeRequired)
-        console.log("Все поля валидны");
+  const checkCheckboxRules = () => {
+    if (regConfig.isRulesAgreeRequired && regConfig.isGetMessageAgreeRequired) {
+      !checkRules ? setCheckRulesError(true) : setCheckRulesError(false)
+      if (!checkGetMesg) setGetCheckMesgError(true)
+      return checkRules && checkGetMesg
+    }
+    if (regConfig.isRulesAgreeRequired) {
+      !checkRules ? setCheckRulesError(true) : setCheckRulesError(false)
+      return checkRules
+    }
+  }
+
+  const submitHandler = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (checkValidation() && checkCheckboxRules()) {
+      console.log("Все поля валидны");
     }
   }
 
   const rulesCheckboxHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.name === 'rules-agree') {
-      setCheckRules((curr) => !curr)
+      setCheckRules((curr) => {
+        if (checkRulesError && !curr) setCheckRulesError(false)
+        return !curr
+      })
     }
     if (e.target.name === 'getmsg-agree') {
-      setGetCheckMesg((curr) => !curr)
+      setGetCheckMesg((curr) => {
+        if (checkGetMesgError && !curr) setGetCheckMesgError(false)
+        return !curr
+      })
     }
   }
+
 
   // const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -130,14 +133,14 @@ const SignUpForm = () => {
 
           <EmailInput
             value={email}
-            error={emailError}
+            emailError={emailError}
             changeHandler={emailChangeHandler}
             key={'su-email-inp-key'}
           ></EmailInput>
 
           <PasswordInput
             value={password}
-            error={passwordError}
+            passwordError={passwordError}
             changeHandler={passwordChangeHandler}
             setShowConfirmPassword={setShowConfirmPass}
             key={'su-pass-inp-key'}
@@ -145,7 +148,7 @@ const SignUpForm = () => {
 
           <ConfirmPassword
             value={confirmPass}
-            error={confirmPassError}
+            confirmPassError={confirmPassError}
             changeHandler={confirmPassChangeHandler}
             showConfirmPass={showConfirmPass}
             key={'su-confpass-inp-key'}
@@ -160,7 +163,7 @@ const SignUpForm = () => {
               // {...label}
               sx={{
                 padding: '0px',
-                color: '#078c75',
+                color: checkRulesError ? 'red' : '#078c75',
                 '&.Mui-checked': {
                   color: '#078c75',
                 },
@@ -168,7 +171,7 @@ const SignUpForm = () => {
             />
             <p
               onClick={() => showRulesHandler()}
-              className="checkbox-text cp"
+              className={checkRulesError ? "checkbox-text--error cp" : "checkbox-text cp"}
             >Согласен с правилами сервиса</p>
 
           </Stack>
@@ -180,13 +183,15 @@ const SignUpForm = () => {
               // {...label}
               sx={{
                 padding: '0px',
-                color: '#078c75',
+                color: checkGetMesgError ? 'red' : '#078c75',
                 '&.Mui-checked': {
                   color: '#078c75',
                 },
               }}
             />
-            <p className="checkbox-text">Согласен с получением сообщений</p>
+            <p
+              className={checkGetMesgError ? "checkbox-text--error" : "checkbox-text"}
+            >Согласен с получением сообщений</p>
 
           </Stack>
           <Stack display={'flex'} flexDirection={'row'} gap={'2rem'} justifyContent={'stretch'}>
