@@ -1,6 +1,8 @@
 export default function useFormValidation() {
 
-  const validate = (type: string, value: string) => {
+  type TFieldType = 'email' | 'password' | 'confirm-password'
+
+  const validate = (type: TFieldType, value: string) => {
     const status: string = '';
     const msg: string = '';
     if (type === 'email') {
@@ -13,8 +15,14 @@ export default function useFormValidation() {
 
     if (type === 'password') {
       console.log("▶ ⇛ value:", value);
-      if (value.length === 0) return { status: 'error', msg: 'password обязателен' }
-      if (value.length <= 5) return { status: 'error', msg: 'password должен быть длиннее 5 символов' }
+      if (value.length === 0) return { status: 'error', msg: 'пароль обязателен' }
+      if (value.length <= 5) return { status: 'error', msg: 'пароль должен быть длиннее 5 символов' }
+
+      return { status: 'ok', msg: '' }
+    }
+
+    if (type === 'confirm-password') {
+      if (value.length === 0) return { status: 'error', msg: 'повторите пароль обязателен' }
 
       return { status: 'ok', msg: '' }
     }

@@ -12,7 +12,7 @@ const EmailInput: FC<IEmailInput> = ({ value, error, changeHandler }) => {
   const inputDefaultStyle = {
     backgroundColor: '#078c75',
     color: '#fff',
-    fontSize: '1.2rem',
+    fontSize: '1rem',
   }
 
   const inputError = {
@@ -26,16 +26,17 @@ const EmailInput: FC<IEmailInput> = ({ value, error, changeHandler }) => {
       // required
       error={error.status}
       name="email"
-      id="outlined-start-adornment"
+      // id="outlined-start-adornment"
       helperText={error.msg || 'e-mail'}
       FormHelperTextProps={{
         style: {
-          marginTop: '10px'
+          marginTop: '6px'
         }
       }}
+
       // Применение стиля к input, а не ко всему TextField
       inputProps={{
-        style: { padding: '10px' },
+        style: { padding: '6px' },
       }}
       InputProps={{
         style: {

@@ -6,5 +6,8 @@ export const ROUTES = {
     LOGIN: '/auth/login',
     LOGOUT: '/auth/logout',
   },
-  SETTINGS: '/settings'
+  SETTINGS: '/settings',
+  REGISTRATION: '/registration',
+  RESET_PASSWORD: '/reset_password',
+  COMPANIES: '/companies'
 };

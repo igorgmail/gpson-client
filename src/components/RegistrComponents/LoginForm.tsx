@@ -2,6 +2,7 @@ import { Box, Button, Stack } from '@mui/material';
 import { useState } from 'react';
 
 import useFormValidation from './useFormValidation'
+import { useNavigate } from 'react-router-dom';
 
 import EmailInput from './Components/EmailInput';
 import PasswordInput from './Components/PasswordInput';
@@ -16,6 +17,7 @@ const LoginForm = () => {
   const [passwordError, setPasswordError] = useState({ status: false, msg: '' })
 
   const { validate } = useFormValidation()
+  const navigate = useNavigate();
 
   const emailChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget
@@ -26,7 +28,6 @@ const LoginForm = () => {
     const target = e.currentTarget
     setPassword(target.value)
   }
-
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault()
@@ -55,6 +56,13 @@ const LoginForm = () => {
 
   }
 
+  const redirectToRegistration = () => {
+    navigate('/registration'); // Переход на маршрут регистрации
+  };
+
+  const resetHandler = () => {
+    navigate('/reset_password');
+  }
   return (
     <Box position="relative" flexDirection="row" height="100vh" width="100%"
       display="flex"
@@ -66,18 +74,28 @@ const LoginForm = () => {
           sx={{
             width: ['80%', '50%', '40%', '30%']
           }}
-          display={'flex'} flexDirection={'column'} gap={'1rem'}>
+          display={'flex'} flexDirection={'column'} gap={'6px'}>
 
-          <GpsonImage></GpsonImage>
+          <GpsonImage key={'gpson-image-key'}></GpsonImage>
 
-          <EmailInput value={email} error={emailError} changeHandler={emailChangeHandler}></EmailInput>
+          <EmailInput
+            value={email}
+            error={emailError}
+            changeHandler={emailChangeHandler}
+            key={'email-input-key'}
+          ></EmailInput>
 
-          <PasswordInput value={password} error={passwordError} changeHandler={passwordChangeHandler}></PasswordInput>
+          <PasswordInput
+            value={password}
+            error={passwordError}
+            changeHandler={passwordChangeHandler}
+            key={'password-input-key'}
+          ></PasswordInput>
 
           <Stack display={'flex'} flexDirection={'row'} gap={'2rem'} justifyContent={'stretch'}>
 
             <Button variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
-
+              onClick={redirectToRegistration}
             >Регистрация</Button>
 
             <Button variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
@@ -85,6 +103,7 @@ const LoginForm = () => {
             >Вход</Button>
           </Stack>
 
+          <p className="back-text" onClick={() => resetHandler()}>зыбыли пароль</p>
         </Stack>
       </form>
     </Box>

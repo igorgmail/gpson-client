@@ -1,18 +1,28 @@
 import { Visibility, VisibilityOff } from "@mui/icons-material"
 import { FormControl, FormHelperText, IconButton, InputAdornment, OutlinedInput } from "@mui/material"
-import { FC, useState } from "react"
+import { Dispatch, FC, SetStateAction, useState } from "react"
 
 interface IPasswordInput {
   value: string
   error: { status: boolean, msg: string }
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void
+  setShowConfirmPassword?: Dispatch<SetStateAction<boolean>>
 }
 
-const PasswordInput: FC<IPasswordInput> = ({ value, error, changeHandler }) => {
+const PasswordInput: FC<IPasswordInput> = ({ value, error, changeHandler, setShowConfirmPassword }) => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const handleClickShowPassword = () => {
+    setShowPassword((show) => {
+      if (setShowConfirmPassword) {
+        setShowConfirmPassword(!show)
+      }
+      console.log("▶ ⇛ setShowConfirmPassword(!show):", !show);
+      return !show
+    })
+
+  };
 
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -21,7 +31,7 @@ const PasswordInput: FC<IPasswordInput> = ({ value, error, changeHandler }) => {
   const inputDefaultStyle = {
     backgroundColor: '#078c75',
     color: '#fff',
-    fontSize: '1.2rem',
+    fontSize: '1rem',
 
   }
 
@@ -34,10 +44,10 @@ const PasswordInput: FC<IPasswordInput> = ({ value, error, changeHandler }) => {
       <OutlinedInput
         onChange={changeHandler}
         value={value}
-        id="outlined-adornment-password"
+        // id="outlined-adornment-password"
         type={showPassword ? 'text' : 'password'}
         inputProps={{
-          style: { padding: '10px' },
+          style: { padding: '6px' },
         }}
         style={{
           ...inputDefaultStyle,
@@ -56,7 +66,7 @@ const PasswordInput: FC<IPasswordInput> = ({ value, error, changeHandler }) => {
           </InputAdornment>
         }
       />
-      <FormHelperText>{error.status ? error.msg : 'password'}</FormHelperText>
+      <FormHelperText>{error.status ? error.msg : 'пароль'}</FormHelperText>
     </FormControl>
   );
 }
