@@ -1,6 +1,6 @@
 export default function useFormValidation() {
 
-  type TFieldType = 'email' | 'password' | 'confirm-password'
+  type TFieldType = 'email' | 'password' | 'confirm-password' | 'pin'
 
   interface IValidate {
     (type: TFieldType, value: string): { error: boolean, msg: string };
@@ -26,6 +26,10 @@ export default function useFormValidation() {
 
     if (type === 'confirm-password') {
       if (value.length === 0) return { error: true, msg: 'повторите пароль обязателен' }
+      return { error: false, msg: '' }
+    }
+    if (type === 'pin') {
+      if (value.length === 0 || value.length < 6) return { error: true, msg: 'введите код из письма' }
       return { error: false, msg: '' }
     }
 
