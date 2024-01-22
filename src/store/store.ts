@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
 import { carsMapReducer } from './slices/carsMapSlice';
 import { carsSettingsReducer } from './slices/carsSettingsSlice';
+import { profileStoreReducer } from './slices/profileSlice';
 
 const logger = createLogger({
   collapsed: true,
@@ -12,6 +13,7 @@ export const store = configureStore({
   reducer: {
     carsMap: carsMapReducer,
     carsSettings: carsSettingsReducer,
+    profileStore: profileStoreReducer
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) => {

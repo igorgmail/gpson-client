@@ -14,7 +14,9 @@ const CustomPinInput: FC<ICustomPinInput> = ({ pinError, changeHandler }) => {
     backgroundColor: '#078c75',
     color: '#fff',
     fontSize: '1rem',
-    borderRadius: '4px'
+    borderRadius: '4px',
+    width: '12%',
+    boxShadow: pinError.error ? 'red 0px 0px 10px 0px' : 'none'
   }
 
   return (
@@ -28,7 +30,7 @@ const CustomPinInput: FC<ICustomPinInput> = ({ pinError, changeHandler }) => {
         onChange={(value, index) => changeHandler(value, index)}
         type="numeric"
         inputMode="number"
-        style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', gap: '10px' }}
+        style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}
         // style={{ padding: '10px' }}
         inputStyle={inputDefaultStyle}
         inputFocusStyle={{}}

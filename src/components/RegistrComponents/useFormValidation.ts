@@ -1,6 +1,6 @@
 export default function useFormValidation() {
 
-  type TFieldType = 'email' | 'password' | 'confirm-password' | 'pin'
+  type TFieldType = 'email' | 'password' | 'confirm-password' | 'pin' | 'comp-name'
 
   interface IValidate {
     (type: TFieldType, value: string): { error: boolean, msg: string };
@@ -30,6 +30,10 @@ export default function useFormValidation() {
     }
     if (type === 'pin') {
       if (value.length === 0 || value.length < 6) return { error: true, msg: 'введите код из письма' }
+      return { error: false, msg: '' }
+    }
+    if (type === 'comp-name') {
+      if (value.length === 0 || value.length < 3) return { error: true, msg: 'минимум три символа' }
       return { error: false, msg: '' }
     }
 

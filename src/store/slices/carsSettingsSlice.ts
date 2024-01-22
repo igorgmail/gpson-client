@@ -138,7 +138,7 @@ export const carsSettingsSlice = createSlice({
     // ? CARS BLOCK --------------------------
     // Удалить Авто
     setRemoveCar: (state, action: PayloadAction<string>) => {
-      state.cars = [...state.cars].filter((point) => point.car_id !== action.payload)
+      state.cars = [...state.cars].filter((car) => car.car_id !== action.payload)
     },
     // Создать Авто
     setCreateCar: (state, action: PayloadAction<ICarObject>) => {

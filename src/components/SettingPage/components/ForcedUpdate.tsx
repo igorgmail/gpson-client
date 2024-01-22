@@ -1,3 +1,4 @@
+// Компонент для показа загрузки при обновления элемента
 import { FC, useEffect } from "react";
 import useAlert from "../hooks/useAlert";
 import useBackDrop from "../hooks/useBackdrop";
