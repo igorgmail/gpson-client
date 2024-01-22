@@ -6,7 +6,7 @@ import ControlPointBlock from "./ControlPointBlock/ControlPointBlock"
 import EventBlock from "./EventBlock/EventBlock"
 import CompanyBlock from "./CompanyBlock/CompanyBlock"
 import UserBlock from "./UsersBlock/UserBlock"
-import { useAppDispatch, carsSettingsActions } from '../../store';
+import { useAppDispatch, carsSettingsActions, useAppSelector } from '../../store';
 
 import Loader from "./components/Loader/Loader"
 import PreloadImages from "./components/PreloadImage"
@@ -26,6 +26,7 @@ const SettingForm = () => {
   const [settingsData, setSettingsData] = useState<ISettingsData>()
   const [updateForm, setUpdateForm] = useState<boolean>(false)
   const dispatch = useAppDispatch()
+  const companyId = useAppSelector((store) => store.profileStore.company_page_id)
 
   const { sendRequest } = useApi()
   const { showAlert, alertComponent } = useAlert()
@@ -34,7 +35,8 @@ const SettingForm = () => {
     const requestOptions: IRequestOptions = {
       method: 'GET',
     };
-    const response = await sendRequest(API_ENDPOINTS.GET_SETTINGS, requestOptions)
+    const url = API_ENDPOINTS.GET_SETTINGS + `?company_id=${companyId}`
+    const response = await sendRequest(url, requestOptions)
     if (response.data?.status === 'error') {
       console.warn("Error in get settings", response.error);
       showAlert('Не удалось получить данные с сервера', 'error');

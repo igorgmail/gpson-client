@@ -1,7 +1,6 @@
 import { FC } from "react"
 
-import { Button, IconButton, Stack } from "@mui/material"
-import ClearIcon from '@mui/icons-material/Clear';
+import { Button, Stack } from "@mui/material"
 import RemoveDialog from "./Components/RemoveDialog";
 import useApi from "./hooks/useApi";
 import { IRequestOptions } from "./types/profilePageTypes";
@@ -9,6 +8,8 @@ import API_ENDPOINTS from "./utils/apiEndpoints";
 import useAlert from "./hooks/useAlert";
 import { useAppDispatch } from "../../store";
 import { profileStoreActions } from "../../store/slices/profileSlice";
+import useBackDrop from "./hooks/useBackdrop";
+import { useNavigate } from "react-router-dom";
 
 type TEventFromDialog = {
   event: 'REMOVE_COMPANY',
@@ -27,8 +28,10 @@ interface ICompanyProps {
 const CompanyItem: FC<ICompanyProps> = ({ companyData }) => {
   console.log('--Render CompanyItem');
 
+  const navigate = useNavigate();
   const { sendRequest } = useApi()
   const { showAlert, alertComponent } = useAlert()
+  const { startBackDrop, stopBackDrop, BackDropComponent } = useBackDrop()
   const dispatch = useAppDispatch()
 
 
@@ -67,24 +70,26 @@ const CompanyItem: FC<ICompanyProps> = ({ companyData }) => {
     msg: companyData.name,
   }
 
-  const removeCallBack = (event: TEventFromDialog) => {
-    console.log("▶ ⇛ event:", event);
-    removeCompanyFetch(event.subjectid)
-
+  const removeCallBack = async (event: TEventFromDialog) => {
+    startBackDrop()
+    await removeCompanyFetch(event.subjectid)
+    stopBackDrop()
   }
 
+  const companyPageHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const target = e.target as HTMLButtonElement
+    const company_id = target.dataset.companyId
+    company_id && dispatch(profileStoreActions.setCompanyPageId(company_id))
+    company_id && navigate(`/settings`)
+  // navigate('/reset_password');
+  }
 
   return (
     <Stack display={'flex'} flexDirection={'row'} width={'100%'} gap={'1rem'}>
 
-      {/* <IconButton
-        aria-label="delete" color="primary"
-        sx={{ padding: '0' }}
-      >
-        <ClearIcon />
-      </IconButton> */}
       <RemoveDialog callback={removeCallBack} eventData={eventData}></RemoveDialog>
       <Button
+        onClick={(e) => companyPageHandler(e)}
         datatype="comp-name-button"
         data-company-id={companyData.company_id}
         variant="contained" className='company-name--button'
@@ -92,6 +97,7 @@ const CompanyItem: FC<ICompanyProps> = ({ companyData }) => {
       // onClick={ }
       >{companyData.name}</Button>
       {alertComponent}
+      {BackDropComponent}
     </Stack>
   )
 }

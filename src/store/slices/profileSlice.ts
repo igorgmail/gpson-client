@@ -6,18 +6,21 @@ type Company = {
   name: string
 }
 
-type TUserData = {
-  companies: Company[] | null;
-  user_id?: string
-}
+// type TUserData = {
+//   companies: Company[] | null;
+//   user_id?: string,
+//   company_page_id : string,
+// }
 
 interface IInitProfileStore {
   companies: Company[] | null;
+  company_page_id: string | null
 }
 
 
 const initialState: IInitProfileStore = {
   companies: null,
+  company_page_id: '1'
 }
 
 export const profileSlice = createSlice({
@@ -31,8 +34,12 @@ export const profileSlice = createSlice({
     removeCompanyFromStore: (state, action: PayloadAction<string>) => {
       state.companies = state.companies?.filter((el) => el.company_id !== action.payload) || null
     },
-
-
+    addNewCompany: (state, action: PayloadAction<Company>) => {
+      state.companies = state.companies ? [...state.companies, action.payload] : [action.payload];
+    },
+    setCompanyPageId: (state, action: PayloadAction<string>) => {
+      state.company_page_id = action.payload
+    },
   },
 }
 )
