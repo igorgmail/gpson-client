@@ -19,9 +19,9 @@ const EmailInput: FC<IEmailInput> = ({ value, emailError, changeHandler }) => {
     boxShadow: 'red 0px 0px 10px 0px',
   }
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>, nextFieldId: string) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>, nextFieldId: string) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
       const nextField = document.getElementById(nextFieldId);
       if (nextField) {
         nextField.focus();
