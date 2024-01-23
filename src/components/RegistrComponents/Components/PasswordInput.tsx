@@ -47,6 +47,7 @@ const PasswordInput: FC<IPasswordInput> = ({ value, passwordError, changeHandler
         type={showPassword ? 'text' : 'password'}
         inputProps={{
           style: { padding: '6px' },
+          enterKeyHint: 'next'
         }}
         style={{
           ...inputDefaultStyle,

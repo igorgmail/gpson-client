@@ -30,6 +30,7 @@ const ConfirmPassword: FC<IConfirmPassword> = ({ value, confirmPassError, change
         type={showConfirmPass ? 'text' : 'password'}
         inputProps={{
           style: { padding: '6px' },
+          enterKeyHint: 'done'
         }}
         style={{
           ...inputDefaultStyle,

@@ -37,12 +37,13 @@ const EmailInput: FC<IEmailInput> = ({ value, emailError, changeHandler }) => {
       // Применение стиля к input, а не ко всему TextField
       inputProps={{
         style: { padding: '6px' },
+        enterKeyHint: 'next'
       }}
       InputProps={{
         style: {
           ...inputDefaultStyle,
           ...(emailError.error ? inputError : {})
-        }
+        },
       }}
     />
   )

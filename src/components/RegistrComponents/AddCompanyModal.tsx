@@ -130,6 +130,7 @@ const AddCompanyModal: FC<IAddCompanyModal> = ({ addCompanyHandler }) => {
                   // Применение стиля к input, а не ко всему TextField
                   inputProps={{
                     style: { padding: '6px', width: '100%' },
+                    enterKeyHint: 'done'
                   }}
                   InputProps={{
                     style: {
