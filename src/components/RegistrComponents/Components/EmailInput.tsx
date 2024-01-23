@@ -20,66 +20,66 @@ const EmailInput: FC<IEmailInput> = ({ value, emailError, changeHandler }) => {
   }
 
   return (
-    <Stack display={'flex'} flexDirection={'column'} width={'100%'}>
+    // <Stack display={'flex'} flexDirection={'column'} width={'100%'}>
 
-      <input
-      onChange={changeHandler}
-      value={value}
-        enterKeyHint='done'
-      // required
-        // error={emailError.error}
-      name="email"
-        type="text"
-        className={emailError.error ? `input-default input-error` : `input-default`}
-      // id="outlined-start-adornment"
-        // helperText={emailError.msg || 'e-mail'}
-        // FormHelperTextProps={{
-        //   style: {
-        //     marginTop: '6px'
-        //   }
-        // }}
-
-        // // Применение стиля к input, а не ко всему TextField
-        // inputProps={{
-        //   style: { padding: '6px' },
-        //   enterKeyHint: 'done'
-        // }}
-        // InputProps={{
-        //   style: {
-        //     ...inputDefaultStyle,
-        //     ...(emailError.error ? inputError : {})
-        //   },
-        // }}
-    />
-      <p className={emailError.error ? "helper-text--default helper-text--error" : `helper-text--default`}>{emailError.msg || 'e-mail'}</p>
-    </Stack>
-
-    // <TextField
+    //   <input
     //   onChange={changeHandler}
     //   value={value}
+    //     enterKeyHint='done'
     //   // required
-    //   error={emailError.error}
+    //     // error={emailError.error}
     //   name="email"
+    //     type="text"
+    //     className={emailError.error ? `input-default input-error` : `input-default`}
     //   // id="outlined-start-adornment"
-    //   helperText={emailError.msg || 'e-mail'}
-    //   FormHelperTextProps={{
-    //     style: {
-    //       marginTop: '6px'
-    //     }
-    //   }}
+    //     // helperText={emailError.msg || 'e-mail'}
+    //     // FormHelperTextProps={{
+    //     //   style: {
+    //     //     marginTop: '6px'
+    //     //   }
+    //     // }}
 
-    //   // Применение стиля к input, а не ко всему TextField
-    //   inputProps={{
-    //     style: { padding: '6px' },
-    //     enterKeyHint: 'done'
-    //   }}
-    //   InputProps={{
-    //     style: {
-    //       ...inputDefaultStyle,
-    //       ...(emailError.error ? inputError : {})
-    //     },
-    //   }}
+    //     // // Применение стиля к input, а не ко всему TextField
+    //     // inputProps={{
+    //     //   style: { padding: '6px' },
+    //     //   enterKeyHint: 'done'
+    //     // }}
+    //     // InputProps={{
+    //     //   style: {
+    //     //     ...inputDefaultStyle,
+    //     //     ...(emailError.error ? inputError : {})
+    //     //   },
+    //     // }}
     // />
+    //   <p className={emailError.error ? "helper-text--default helper-text--error" : `helper-text--default`}>{emailError.msg || 'e-mail'}</p>
+    // </Stack>
+
+    <TextField
+      onChange={changeHandler}
+      value={value}
+      // required
+      error={emailError.error}
+      name="email"
+      // id="outlined-start-adornment"
+      helperText={emailError.msg || 'e-mail'}
+      FormHelperTextProps={{
+        style: {
+          marginTop: '6px'
+        }
+      }}
+
+      // Применение стиля к input, а не ко всему TextField
+      inputProps={{
+        style: { padding: '6px' },
+        enterKeyHint: 'enter'
+      }}
+      InputProps={{
+        style: {
+          ...inputDefaultStyle,
+          ...(emailError.error ? inputError : {})
+        },
+      }}
+    />
   )
 }
 

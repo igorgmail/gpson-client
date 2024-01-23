@@ -114,12 +114,6 @@ const LoginForm = () => {
             emailError={emailError}
             changeHandler={emailChangeHandler}
             key={'email-input-key'}
-          ></EmailInput>
-        <EmailInput
-          value={email}
-          emailError={emailError}
-          changeHandler={emailChangeHandler}
-          key={'email-input-key'}
         ></EmailInput>
 
           <PasswordInput
