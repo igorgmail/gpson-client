@@ -43,7 +43,7 @@ const PasswordInput: FC<IPasswordInput> = ({ value, passwordError, changeHandler
       <OutlinedInput
         onChange={changeHandler}
         value={value}
-        // id="outlined-adornment-password"
+        id="password-input"
         type={showPassword ? 'text' : 'password'}
         inputProps={{
           style: { padding: '6px' },

@@ -19,6 +19,16 @@ const EmailInput: FC<IEmailInput> = ({ value, emailError, changeHandler }) => {
     boxShadow: 'red 0px 0px 10px 0px',
   }
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>, nextFieldId: string) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const nextField = document.getElementById(nextFieldId);
+      if (nextField) {
+        nextField.focus();
+      }
+    }
+  };
+
   return (
     // <Stack display={'flex'} flexDirection={'column'} width={'100%'}>
 
@@ -56,11 +66,12 @@ const EmailInput: FC<IEmailInput> = ({ value, emailError, changeHandler }) => {
 
     <TextField
       onChange={changeHandler}
+      onKeyDown={(e) => handleKeyDown(e, "password-input")}
       value={value}
       // required
       error={emailError.error}
       name="email"
-      // id="outlined-start-adornment"
+      id="email_input"
       helperText={emailError.msg || 'e-mail'}
       FormHelperTextProps={{
         style: {

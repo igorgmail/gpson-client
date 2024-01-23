@@ -26,7 +26,7 @@ const ConfirmPassword: FC<IConfirmPassword> = ({ value, confirmPassError, change
       <OutlinedInput
         onChange={changeHandler}
         value={value}
-        // id="outlined-adornment-password"
+        id="confirm-password-input"
         type={showConfirmPass ? 'text' : 'password'}
         inputProps={{
           style: { padding: '6px' },
