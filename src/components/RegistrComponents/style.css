@@ -6,6 +6,41 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: #fff
 }
 
+.input-default {
+  width: 100%;
+  position: relative;
+  align-items: center;
+  padding: 6px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.4375em;
+  background-color: rgb(7, 140, 117);
+  color: rgb(255, 255, 255);
+  outline: none;
+  border-radius: 8px;
+  border: 2px solid rgb(7, 140, 117);
+}
+
+.input-default:focus {
+  outline: none;
+  border: 2px solid rgb(0, 78, 180);
+  box-shadow: rgb(0, 78, 180) 0px 0px 10px 0px;
+}
+
+.input-error {
+  box-shadow: red 0px 0px 10px 0px
+}
+
+.helper-text--default {
+  margin: 3px 0 0 14px;
+  font-family: 'Roboto', sans-serif, "Helvetica Neue", Arial, sans-serif;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6)
+}
+
+.helper-text--error {
+  color: red
+}
 .reg-default-form {
   display: contents;
 }
