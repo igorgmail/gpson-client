@@ -131,7 +131,7 @@ const LoginForm = () => {
 
             <Button variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
               type='submit'
-            onSubmit={submitHandler}
+            onClick={submitHandler}
             >Вход</Button>
           </Stack>
 
