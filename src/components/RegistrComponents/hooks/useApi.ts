@@ -1,3 +1,5 @@
+import { useAppSelector, store } from "../../../store";
+
 const apiEndpoint = process.env.REACT_APP_API_USER;
 type Tmethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
@@ -10,8 +12,11 @@ const password = process.env.REACT_APP_API_USER_PASSWORD;
 
 function useApi() {
 
+  const user_token = useAppSelector((store) => store.profileStore.user_token)
 
   const sendRequest = async (url: string, options: IRequestOptions) => {
+
+    const actual_user_token = store.getState().profileStore.user_token
     let responseData;
     const abortController = new AbortController();
     try {
@@ -20,8 +25,7 @@ function useApi() {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          // 'Authorization': `Basic ${username}:${password}`
-          'Authorization': 'Basic ' + btoa(username + ":" + password)
+          'Authorization': actual_user_token
         },
         credentials: 'same-origin',
         body: options.body,
@@ -38,6 +42,8 @@ function useApi() {
 
     }
   };
+
+
 
   return { sendRequest, abortController: AbortController };
 }

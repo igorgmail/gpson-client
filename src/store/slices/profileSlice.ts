@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+const username = process.env.REACT_APP_API_USER_NAME;
+const password = process.env.REACT_APP_API_USER_PASSWORD;
 
-
+const default_token = 'Basic ' + btoa(username + ':' + password);
 type Company = {
   company_id: string;
   name: string
@@ -14,13 +16,15 @@ type Company = {
 
 interface IInitProfileStore {
   companies: Company[] | null;
-  company_page_id: string | null
+  company_page_id: string | null;
+  user_token: string
 }
 
 
 const initialState: IInitProfileStore = {
   companies: null,
-  company_page_id: '1'
+  company_page_id: '1',
+  user_token: ''//default_token
 }
 
 export const profileSlice = createSlice({
@@ -28,6 +32,10 @@ export const profileSlice = createSlice({
   initialState: initialState,
   reducers: {
 
+    setUserToken: (state, action: PayloadAction<string>) => {
+      console.log("▶ ⇛ Set Token", action.payload);
+      state.user_token = action.payload
+    },
     setUserDataFromServer: (state, action: PayloadAction<IInitProfileStore>) => {
       state.companies = action.payload.companies
     },

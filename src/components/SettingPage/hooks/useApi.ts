@@ -11,6 +11,7 @@ const password = process.env.REACT_APP_API_USER_PASSWORD;
 function useApi() {
 
 
+
   const sendRequest = async (url: string, options: IRequestOptions) => {
     let responseData;
     const abortController = new AbortController();
@@ -20,7 +21,6 @@ function useApi() {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          // 'Authorization': `Basic ${username}:${password}`
           'Authorization': 'Basic ' + btoa(username + ":" + password)
         },
         credentials: 'same-origin',

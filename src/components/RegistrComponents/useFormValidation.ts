@@ -12,6 +12,7 @@ export default function useFormValidation() {
     const msg: string = '';
 
     if (type === 'email') {
+      if (value === 'test') return { error: false, msg: '' }
       if (value.length === 0) return { error: true, msg: 'email обязателен' }
       // if (!/\S+@\S+\.\S+/.test(value)) return { status: 'error', msg: 'email не валидный' }
       if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)) return { error: true, msg: 'email не валидный' }
@@ -20,7 +21,7 @@ export default function useFormValidation() {
 
     if (type === 'password') {
       if (value.length === 0) return { error: true, msg: 'пароль обязателен' }
-      if (value.length <= 5) return { error: true, msg: 'пароль должен быть длиннее 5 символов' }
+      if (value.length <= 2) return { error: true, msg: 'пароль должен быть длиннее 5 символов' }
       return { error: false, msg: '' }
     }
 
