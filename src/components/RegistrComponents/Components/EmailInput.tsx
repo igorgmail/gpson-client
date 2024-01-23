@@ -29,6 +29,7 @@ const EmailInput: FC<IEmailInput> = ({ value, emailError, changeHandler }) => {
       // required
         // error={emailError.error}
       name="email"
+        type="text"
         className={emailError.error ? `input-default input-error` : `input-default`}
       // id="outlined-start-adornment"
         // helperText={emailError.msg || 'e-mail'}
