@@ -100,7 +100,7 @@ const LoginForm = () => {
       justifyContent={'center'}
       alignItems={'center'}
     >
-      <form className='reg-default-form' id='login-form-id' onSubmit={submitHandler}>
+      {/* <form className='reg-default-form' id='login-form-id' onSubmit={submitHandler}> */}
         <Stack
           sx={{
             width: ['80%', '50%', '40%', '30%']
@@ -131,12 +131,13 @@ const LoginForm = () => {
 
             <Button variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
               type='submit'
+            onSubmit={submitHandler}
             >Вход</Button>
           </Stack>
 
           <p className="back-text" onClick={() => resetHandler()}>зыбыли пароль</p>
         </Stack>
-      </form>
+      {/* </form> */}
     </Box>
     {alertComponent}
   </>
