@@ -11,6 +11,11 @@ import ConfirmPassword from "./Components/ConfirmPassword"
 import GpsonImage from "./Components/GpsonImage"
 import EmailInput from "./Components/EmailInput"
 import RulesModal from "./RulesModal"
+import { IRequestOptions } from "./types/profilePageTypes"
+import API_ENDPOINTS from "./utils/apiEndpoints"
+import useApi from "./hooks/useApi"
+import useAlert from "./hooks/useAlert"
+import { useAppDispatch, profileStoreActions } from "../../store"
 
 const SignUpForm = () => {
 
@@ -32,8 +37,11 @@ const SignUpForm = () => {
   const [checkGetMesgError, setGetCheckMesgError] = useState(false)
 
 
+  const dispatch = useAppDispatch()
   const { validate } = useFormValidation()
   const navigate = useNavigate();
+  const { sendRequest } = useApi()
+  const { showAlert, alertComponent } = useAlert()
 
   const emailChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget
@@ -48,6 +56,32 @@ const SignUpForm = () => {
   const confirmPassChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget
     setConfirmPass(target.value)
+  }
+
+  // TODO Изменить логику авторизации
+  const signUpFetch = async () => {
+    const requestOptions: IRequestOptions = {
+      method: 'POST',
+    };
+
+    const url = API_ENDPOINTS.USER_REGISTRATION + `?email=${email}&pass=${password}`
+    const response = await sendRequest(url, requestOptions)
+
+    if (response.error) {
+      showAlert('Не удалось получить данные с сервера', 'error');
+    }
+    if (response.data?.status === 'error') {
+      console.warn("Registration error", response.data.message);
+      showAlert('При регистрации произошла ошибка', 'error');
+      return
+    }
+    if (response.data) {
+      const { companies } = response.data;// companies - array
+      const { id, name } = companies[0]
+
+      // dispatch(profileStoreActions.addNewCompany({ company_id: id, name }))
+      navigate('/companies');
+    }
   }
 
   const checkValidation = () => {
@@ -85,7 +119,7 @@ const SignUpForm = () => {
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault()
     if (checkValidation() && checkCheckboxRules()) {
-      console.log("Все поля валидны");
+      signUpFetch()
     }
   }
 
@@ -117,6 +151,8 @@ const SignUpForm = () => {
 
 
   return (
+    <>
+
     <Box position="relative" flexDirection="row" height="90svh" width="100%"
       display="flex"
       justifyContent={'center'}
@@ -204,6 +240,8 @@ const SignUpForm = () => {
       </form>
       <RulesModal rulesOpen={rulesOpen} setRulesOpen={setRulesOpen}></RulesModal>
     </Box>
+      {alertComponent}
+    </>
   )
 
 }
