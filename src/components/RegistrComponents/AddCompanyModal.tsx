@@ -77,7 +77,7 @@ const AddCompanyModal: FC<IAddCompanyModal> = ({ addCompanyHandler }) => {
 
   return (
     <>
-      <Fab color="primary" aria-label="add-car" size="small"
+      {/* <Fab color="primary" aria-label="add-car" size="small"
         onClick={() => handleOpen()}
         sx={{
           backgroundColor: '#078c75', marginTop: '1rem', zIndex: 100,
@@ -87,7 +87,14 @@ const AddCompanyModal: FC<IAddCompanyModal> = ({ addCompanyHandler }) => {
         }}
       >
         <AddIcon />
-      </Fab>
+      </Fab> */}
+      <Button
+        onClick={() => handleOpen()}
+        variant="outlined" startIcon={<AddIcon />}
+        sx={{ width: 'calc(100% - 3rem)', alignSelf: 'end' }}
+      >
+        Новая компания
+      </Button>
 
       <Modal
         aria-labelledby="transition-modal-title"

@@ -16,7 +16,7 @@ import { useAppDispatch, profileStoreActions } from '../../store';
 import useApi from './hooks/useApi';
 import useAlert from './hooks/useAlert';
 
-const LoginForm = () => {
+const FormLogin = () => {
 
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState({ error: false, msg: '' })
@@ -49,10 +49,10 @@ const LoginForm = () => {
     }
     if (response.data) {
       const { companies } = response.data;// companies - array
-      const { id, name } = companies[0]
+      companies.length === 1 ? navigate('/settings') : navigate('/companies')
 
-      dispatch(profileStoreActions.addNewCompany({ company_id: id, name }))
-      navigate('/companies');
+      // const { id, name } = companies[0]
+      // dispatch(profileStoreActions.setUserDataFromServer(companies))
     }
   }
 
@@ -115,32 +115,35 @@ const LoginForm = () => {
   return (<>
     <FormWrap>
       <form className='reg-default-form' id='login-form-id' onSubmit={submitHandler}>
-          <EmailInput
-            value={email}
-            emailError={emailError}
-            changeHandler={emailChangeHandler}
+        <EmailInput
+          value={email}
+          emailError={emailError}
+          changeHandler={emailChangeHandler}
           // onBlurHandler={emailBlulHandler}
-            key={'email-input-key'}
+          key={'email-input-key'}
         ></EmailInput>
 
-          <PasswordInput
-            value={password}
-            passwordError={passwordError}
-            changeHandler={passwordChangeHandler}
-            key={'password-input-key'}
-          ></PasswordInput>
+        <PasswordInput
+          value={password}
+          passwordError={passwordError}
+          changeHandler={passwordChangeHandler}
+          key={'password-input-key'}
+        ></PasswordInput>
 
-          <Stack display={'flex'} flexDirection={'row'} gap={'2rem'} justifyContent={'stretch'}>
+        <Stack display={'flex'} flexDirection={'row'} gap={'2rem'} justifyContent={'stretch'}>
 
-            <Button variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
-              onClick={redirectToRegistration}
-            >Регистрация</Button>
+          <Button
+            onClick={redirectToRegistration}
+            variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
+          >Регистрация</Button>
 
-            <Button variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
-              type='submit'
-              // onClick={submitHandler}
-            >Вход</Button>
-          </Stack>
+          <Button
+            id={'button-submit-id'}
+            variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
+            type='submit'
+          // onClick={submitHandler}
+          >Вход</Button>
+        </Stack>
 
         <p className="back-text" onClick={() => resetHandler()}>зыбыли пароль</p>
       </form>
@@ -151,4 +154,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+export default FormLogin

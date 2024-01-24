@@ -8,11 +8,9 @@ type Company = {
   name: string
 }
 
-// type TUserData = {
-//   companies: Company[] | null;
-//   user_id?: string,
-//   company_page_id : string,
-// }
+type TUserFromServerData = {
+  companies: Company[];
+}
 
 interface IInitProfileStore {
   companies: Company[] | null;
@@ -36,7 +34,7 @@ export const profileSlice = createSlice({
       console.log("▶ ⇛ Set Token", action.payload);
       state.user_token = action.payload
     },
-    setUserDataFromServer: (state, action: PayloadAction<IInitProfileStore>) => {
+    setUserDataFromServer: (state, action: PayloadAction<TUserFromServerData>) => {
       state.companies = action.payload.companies
     },
     removeCompanyFromStore: (state, action: PayloadAction<string>) => {

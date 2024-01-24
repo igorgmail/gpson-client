@@ -18,7 +18,7 @@ import useApi from "./hooks/useApi"
 import useAlert from "./hooks/useAlert"
 import { useAppDispatch, profileStoreActions } from "../../store"
 
-const SignUpForm = () => {
+const FormSignUp = () => {
 
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState({ error: false, msg: '' })
@@ -81,7 +81,7 @@ const SignUpForm = () => {
       const { id, name } = companies[0]
 
       // dispatch(profileStoreActions.addNewCompany({ company_id: id, name }))
-      navigate('/companies');
+      navigate('/');
     }
   }
 
@@ -190,6 +190,7 @@ const SignUpForm = () => {
           <Stack display={'flex'} flexDirection={'row'} gap={'2rem'} >
 
             <Checkbox
+              id={'checkbox-rule-id'}
               checked={checkRules} onChange={rulesCheckboxHandler} name="rules-agree"
               // {...label}
               sx={{
@@ -233,7 +234,7 @@ const SignUpForm = () => {
             >Регистрация</Button>
           </Stack>
           <p className="back-text" onClick={() => backHandler()}>назад</p>
-      </form>
+        </form>
 
       </FormWrap>
       <RulesModal rulesOpen={rulesOpen} setRulesOpen={setRulesOpen}></RulesModal>
@@ -242,4 +243,4 @@ const SignUpForm = () => {
   )
 
 }
-export default SignUpForm
+export default FormSignUp

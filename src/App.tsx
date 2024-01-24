@@ -5,8 +5,8 @@ import { ROUTES } from './constants';
 import { Main } from './components/Main';
 import MainCars from './components/MainCars/MainCars';
 import SettingMain from './components/SettingPage/SettingMain';
-import SignUpForm from './components/RegistrComponents/SignUpForm';
-import ResetPassword from './components/RegistrComponents/ResetPassword';
+import FormSignUp from './components/RegistrComponents/FormSignUp';
+import FormResetPassword from './components/RegistrComponents/FormResetPassword';
 import Companies from './components/RegistrComponents/Companies';
 
 const routes: RouteObject[] = [
@@ -24,11 +24,11 @@ const routes: RouteObject[] = [
   },
   {
     path: ROUTES.REGISTRATION,
-    element: <SignUpForm />
+    element: <FormSignUp />
   },
   {
     path: ROUTES.RESET_PASSWORD,
-    element: <ResetPassword />
+    element: <FormResetPassword />
   },
   {
     path: ROUTES.COMPANIES,

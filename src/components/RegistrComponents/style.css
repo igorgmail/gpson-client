@@ -67,7 +67,12 @@ input:-webkit-autofill:active {
   display: flex;
   align-items: center;
 }
-
+.checkbox-text::after {
+  content: '*';
+  color: red;
+  font-size: 12px;
+  margin-left: 4px;
+}
 .checkbox-text--error {
   font-family: 'Roboto', sans-serif;
   font-size: 12px;

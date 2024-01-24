@@ -21,6 +21,22 @@ const ConfirmPassword: FC<IConfirmPassword> = ({ value, confirmPassError, change
     boxShadow: 'red 0px 0px 10px 0px',
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>, nextFieldId: string) => {
+    const key = e.key || e.keyCode || e.which;
+    // const target = e.target as HTMLInputElement
+
+    if (e.key === 'Enter' || key === 13) {
+      e.preventDefault();
+      const nextField = document.getElementById(nextFieldId);
+      const button = document.getElementById('button-submit-id');
+      if (nextField) {
+        nextField.focus();
+      } else {
+        button?.focus()
+      }
+    }
+  };
+
   return (
     <FormControl variant="outlined" error={confirmPassError.error}>
       <OutlinedInput
@@ -29,6 +45,7 @@ const ConfirmPassword: FC<IConfirmPassword> = ({ value, confirmPassError, change
         id="confirm-password-input"
         type={showConfirmPass ? 'text' : 'password'}
         inputProps={{
+          onKeyDown: (e) => handleKeyDown(e, "checkbox-rule-id"),
           style: { padding: '6px' },
           enterKeyHint: 'done'
         }}

@@ -23,6 +23,22 @@ const PasswordInput: FC<IPasswordInput> = ({ value, passwordError, changeHandler
 
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement | HTMLInputElement>, nextFieldId: string) => {
+    const key = e.key || e.keyCode || e.which;
+    // const target = e.target as HTMLInputElement
+
+    if (e.key === 'Enter' || key === 13) {
+      e.preventDefault();
+      const nextField = document.getElementById(nextFieldId);
+      const button = document.getElementById('button-submit-id');
+      if (nextField) {
+        nextField.focus();
+      } else {
+        button?.focus()
+      }
+    }
+  };
+
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
@@ -42,10 +58,12 @@ const PasswordInput: FC<IPasswordInput> = ({ value, passwordError, changeHandler
     <FormControl variant="outlined" error={passwordError.error}>
       <OutlinedInput
         onChange={changeHandler}
+
         value={value}
         id="password-input"
         type={showPassword ? 'text' : 'password'}
         inputProps={{
+          onKeyDown: (e) => handleKeyDown(e, "confirm-password-input"),
           style: { padding: '6px' },
           enterKeyHint: 'enter'
         }}

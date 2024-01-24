@@ -42,7 +42,6 @@ const CompanyItem: FC<ICompanyProps> = ({ companyData }) => {
 
     const url = API_ENDPOINTS.DELETE_COMPANY + `?company_id=${id}`
     const response = await sendRequest(url, requestOptions)
-    console.log("▶ ⇛ response:", response);
 
     if (response.error) {
       showAlert('Не удалось получить данные с сервера', 'error');

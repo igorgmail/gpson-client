@@ -15,7 +15,7 @@ import API_ENDPOINTS from './utils/apiEndpoints';
 import useApi from './hooks/useApi';
 import useAlert from './hooks/useAlert';
 
-const ResetPassword = () => {
+const FormResetPassword = () => {
 
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState({ error: false, msg: '' })
@@ -58,7 +58,7 @@ const ResetPassword = () => {
       const { id, name } = companies[0]
 
       // dispatch(profileStoreActions.addNewCompany({ company_id: id, name }))
-      navigate('/companies');
+      navigate('/');
     }
   }
 
@@ -148,17 +148,19 @@ const ResetPassword = () => {
 
           <Stack display={'flex'} flexDirection={'row'} gap={'2rem'} justifyContent={'stretch'}>
 
-            <Button variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
+            <Button
+              id={'button-submit-id'}
+              variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
               type='submit'
             >Запомнить пароль</Button>
           </Stack>
 
           <p className="back-text" onClick={() => backHandler()}>назад</p>
-      </form>
+        </form>
 
       </FormWrap>
       {alertComponent}
     </>
   )
 }
-export default ResetPassword
+export default FormResetPassword

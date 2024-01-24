@@ -47,7 +47,6 @@ const Companies = () => {
       return
     }
     if (response.data) {
-      console.log("▶ ⇛ response.data:", response.data);
 
       const { companies } = response.data;// companies - array
       const { id, name } = companies[0]
@@ -114,6 +113,7 @@ const Companies = () => {
               ))}
 
               <AddCompanyModal addCompanyHandler={addCompanyHandler}></AddCompanyModal>
+
             </Stack>
 
 

@@ -1,9 +1,9 @@
-import LoginForm from "./LoginForm"
+import FormLogin from "./FormLogin"
 
 import './style.css'
 const index = () => {
   return (
-    <LoginForm></LoginForm>
+    <FormLogin></FormLogin>
   )
 }
 export default index
