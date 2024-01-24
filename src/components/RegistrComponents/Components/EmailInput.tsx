@@ -5,9 +5,10 @@ interface IEmailInput {
   value: string
   emailError: { error: boolean, msg: string }
   changeHandler: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onBlurHandler?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
-const EmailInput: FC<IEmailInput> = ({ value, emailError, changeHandler }) => {
+const EmailInput: FC<IEmailInput> = ({ value, emailError, changeHandler, onBlurHandler }) => {
 
   const inputDefaultStyle = {
     backgroundColor: '#078c75',
@@ -66,6 +67,7 @@ const EmailInput: FC<IEmailInput> = ({ value, emailError, changeHandler }) => {
 
     <TextField
       onChange={changeHandler}
+      // onBlur={onBlurHandler}
       onKeyDown={(e) => handleKeyDown(e, "password-input")}
       value={value}
       // required

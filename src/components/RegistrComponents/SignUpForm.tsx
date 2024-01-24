@@ -6,6 +6,7 @@ import { regConfig } from "./config/config"
 
 import { Box, Button, Checkbox, FormControlLabel, Stack } from "@mui/material"
 
+import FormWrap from "./FormWrap"
 import PasswordInput from "./Components/PasswordInput"
 import ConfirmPassword from "./Components/ConfirmPassword"
 import GpsonImage from "./Components/GpsonImage"
@@ -149,23 +150,17 @@ const SignUpForm = () => {
     setRulesOpen(true)
   }
 
+  const isButtonActive = () => {
+    // Если true то button disabled
+    if (regConfig.isRulesAgreeRequired && regConfig.isGetMessageAgreeRequired) return !checkRules || !checkGetMesg
+    if (regConfig.isRulesAgreeRequired && !checkRules) return true
+    return false
+  }
 
   return (
     <>
-
-    <Box position="relative" flexDirection="row" height="90svh" width="100%"
-      display="flex"
-      justifyContent={'center'}
-      alignItems={'center'}
-    >
-      <form className='reg-default-form' id='login-form-id' onSubmit={submitHandler}>
-        <Stack
-          sx={{
-            width: ['80%', '50%', '40%', '30%']
-          }}
-          display={'flex'} flexDirection={'column'} gap={'6px'}>
-
-          <GpsonImage key={'su-gp-img-key'}></GpsonImage>
+      <FormWrap>
+        <form className='reg-default-form' id='login-form-id' onSubmit={submitHandler}>
 
           <EmailInput
             value={email}
@@ -231,15 +226,17 @@ const SignUpForm = () => {
 
           </Stack>
           <Stack display={'flex'} flexDirection={'row'} gap={'2rem'} justifyContent={'stretch'}>
-            <Button variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
+            <Button
+              disabled={isButtonActive()}
+              variant="contained" style={{ flexGrow: 1 }} className='reg-default-form--button '
               type='submit'
             >Регистрация</Button>
           </Stack>
           <p className="back-text" onClick={() => backHandler()}>назад</p>
-        </Stack>
       </form>
+
+      </FormWrap>
       <RulesModal rulesOpen={rulesOpen} setRulesOpen={setRulesOpen}></RulesModal>
-    </Box>
       {alertComponent}
     </>
   )

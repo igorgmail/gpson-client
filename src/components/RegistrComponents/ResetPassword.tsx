@@ -4,6 +4,7 @@ import { useState } from 'react';
 import useFormValidation from './useFormValidation'
 import { useNavigate } from 'react-router-dom';
 
+import FormWrap from './FormWrap';
 import EmailInput from './Components/EmailInput';
 import PasswordInput from './Components/PasswordInput';
 import GpsonImage from './Components/GpsonImage';
@@ -116,20 +117,9 @@ const ResetPassword = () => {
 
   return (
     <>
+      <FormWrap>
 
-    <Box position="relative" flexDirection="row" height="100vh" width="100%"
-      display="flex"
-      justifyContent={'center'}
-      alignItems={'center'}
-    >
-      <form className='reg-default-form' id='login-form-id' onSubmit={submitHandler}>
-        <Stack
-          sx={{
-            width: ['80%', '50%', '40%', '30%']
-          }}
-          display={'flex'} flexDirection={'column'} gap={'6px'}>
-
-          <GpsonImage key={'gpson-image-key'}></GpsonImage>
+        <form className='reg-default-form' id='login-form-id' onSubmit={submitHandler}>
 
           <EmailInput
             value={email}
@@ -164,9 +154,9 @@ const ResetPassword = () => {
           </Stack>
 
           <p className="back-text" onClick={() => backHandler()}>назад</p>
-        </Stack>
       </form>
-    </Box>
+
+      </FormWrap>
       {alertComponent}
     </>
   )

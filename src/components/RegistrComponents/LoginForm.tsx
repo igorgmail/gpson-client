@@ -8,6 +8,7 @@ import createBasicAuthToken from './utils/createBasicAuth';
 import { IRequestOptions } from "./types/profilePageTypes";
 import API_ENDPOINTS from "./utils/apiEndpoints"
 
+import FormWrap from './FormWrap';
 import EmailInput from './Components/EmailInput';
 import PasswordInput from './Components/PasswordInput';
 import GpsonImage from './Components/GpsonImage';
@@ -55,14 +56,31 @@ const LoginForm = () => {
     }
   }
 
+  const checkAllFieldToValid = () => {
+    return !emailError.error && !passwordError.error
+  }
+
   const emailChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget
     setEmail(target.value)
   }
 
+  const emailBlulHandler = (e: React.FocusEvent<HTMLInputElement>) => {
+    const target = e.currentTarget
+    const isEmailValid = validate('email', email)
+    setEmailError({ ...isEmailValid })
+  }
+
   const passwordChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.currentTarget
     setPassword(target.value)
+  }
+
+  const passwordBlulHandler = (e: React.FocusEvent<HTMLInputElement>) => {
+    const target = e.currentTarget
+    const isPasswordValid = validate('password', password)
+    setPasswordError({ ...isPasswordValid })
+
   }
 
   const submitHandler = (e: React.FormEvent) => {
@@ -95,24 +113,13 @@ const LoginForm = () => {
     navigate('/reset_password');
   }
   return (<>
-    <Box position="relative" flexDirection="row" height="100vh" width="100%"
-      display="flex"
-      justifyContent={'center'}
-      alignItems={'center'}
-    >
+    <FormWrap>
       <form className='reg-default-form' id='login-form-id' onSubmit={submitHandler}>
-        <Stack
-          sx={{
-            width: ['80%', '50%', '40%', '30%']
-          }}
-          display={'flex'} flexDirection={'column'} gap={'6px'}>
-
-          <GpsonImage key={'gpson-image-key'}></GpsonImage>
-
           <EmailInput
             value={email}
             emailError={emailError}
             changeHandler={emailChangeHandler}
+          // onBlurHandler={emailBlulHandler}
             key={'email-input-key'}
         ></EmailInput>
 
@@ -135,10 +142,9 @@ const LoginForm = () => {
             >Вход</Button>
           </Stack>
 
-          <p className="back-text" onClick={() => resetHandler()}>зыбыли пароль</p>
-        </Stack>
+        <p className="back-text" onClick={() => resetHandler()}>зыбыли пароль</p>
       </form>
-    </Box>
+    </FormWrap>
     {alertComponent}
   </>
 
