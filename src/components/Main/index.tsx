@@ -5,7 +5,7 @@ import { default as RegMain } from '../RegistrComponents/index';
 export const Main: ComponentType = () => {
 
   return (
-    <Box display="flex" position="relative" flexDirection="row" height="100vh" width="100%">
+    <Box display="flex" position="relative" flexDirection="row" height="100svh" width="100%">
       <RegMain />
     </Box>
   );

@@ -119,6 +119,7 @@ const AddCompanyModal: FC<IAddCompanyModal> = ({ addCompanyHandler }) => {
                   // required
                   error={compNameError.error}
                   name="email"
+                  autoFocus
                   // id="outlined-start-adornment"
                   helperText={compNameError.msg || 'имя компании'}
                   FormHelperTextProps={{
