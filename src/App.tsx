@@ -40,9 +40,9 @@ export const App = () => {
   const { pathname } = useLocation();
 
   // //Always on top on serve
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, [pathname]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return useRoutes([
     ...routes,
