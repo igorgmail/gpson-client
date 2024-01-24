@@ -94,6 +94,7 @@ const CompanyItem: FC<ICompanyProps> = ({ companyData }) => {
         variant="contained" className='company-name--button'
         type='submit'
       // onClick={ }
+        sx={{ textTransform: 'none' }}
       >{companyData.name}</Button>
       {alertComponent}
       {BackDropComponent}

@@ -49,7 +49,12 @@ const FormLogin = () => {
     }
     if (response.data) {
       const { companies } = response.data;// companies - array
-      companies.length === 1 ? navigate('/settings') : navigate('/companies')
+      if (companies.length === 1) {
+        dispatch(profileStoreActions.setCompanyPageId(companies[0].company_id));
+        navigate('/settings')
+      } else {
+        navigate('/companies')
+      }
 
       // const { id, name } = companies[0]
       // dispatch(profileStoreActions.setUserDataFromServer(companies))
