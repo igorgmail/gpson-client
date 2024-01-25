@@ -1,15 +1,17 @@
 import { FC } from "react"
-
+import { useNavigate } from "react-router-dom";
 import { Button, Stack } from "@mui/material"
-import RemoveDialog from "./Components/RemoveDialog";
+
 import useApi from "./hooks/useApi";
-import { IRequestOptions } from "./types/profilePageTypes";
-import API_ENDPOINTS from "./utils/apiEndpoints";
 import useAlert from "./hooks/useAlert";
+import useBackDrop from "./hooks/useBackdrop";
+import API_ENDPOINTS from "./utils/apiEndpoints";
+import { IRequestOptions } from "./types/profilePageTypes";
+
+import RemoveDialog from "./Components/RemoveDialog";
+
 import { useAppDispatch } from "../../store";
 import { profileStoreActions } from "../../store/slices/profileSlice";
-import useBackDrop from "./hooks/useBackdrop";
-import { useNavigate } from "react-router-dom";
 
 type TEventFromDialog = {
   event: 'REMOVE_COMPANY',
@@ -26,7 +28,6 @@ interface ICompanyProps {
 }
 
 const CompanyItem: FC<ICompanyProps> = ({ companyData }) => {
-  console.log('--Render CompanyItem');
 
   const navigate = useNavigate();
   const { sendRequest } = useApi()
@@ -59,8 +60,6 @@ const CompanyItem: FC<ICompanyProps> = ({ companyData }) => {
     }
 
   }
-
-
 
   const eventData = {
     event: 'REMOVE_COMPANY',
@@ -101,4 +100,5 @@ const CompanyItem: FC<ICompanyProps> = ({ companyData }) => {
     </Stack>
   )
 }
+
 export default CompanyItem

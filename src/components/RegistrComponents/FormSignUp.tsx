@@ -1,22 +1,19 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { Button, Checkbox, Stack } from "@mui/material"
 
-import useFormValidation from "./useFormValidation"
+import useApi from "./hooks/useApi"
+import useAlert from "./hooks/useAlert"
+import useFormValidation from "./hooks/useFormValidation"
+import API_ENDPOINTS from "./utils/apiEndpoints"
 import { regConfig } from "./config/config"
-
-import { Box, Button, Checkbox, FormControlLabel, Stack } from "@mui/material"
+import { IRequestOptions } from "./types/profilePageTypes"
 
 import FormWrap from "./FormWrap"
 import PasswordInput from "./Components/PasswordInput"
 import ConfirmPassword from "./Components/ConfirmPassword"
-import GpsonImage from "./Components/GpsonImage"
 import EmailInput from "./Components/EmailInput"
 import RulesModal from "./RulesModal"
-import { IRequestOptions } from "./types/profilePageTypes"
-import API_ENDPOINTS from "./utils/apiEndpoints"
-import useApi from "./hooks/useApi"
-import useAlert from "./hooks/useAlert"
-import { useAppDispatch, profileStoreActions } from "../../store"
 
 const FormSignUp = () => {
 
@@ -37,8 +34,6 @@ const FormSignUp = () => {
   const [checkGetMesg, setGetCheckMesg] = useState(false)
   const [checkGetMesgError, setGetCheckMesgError] = useState(false)
 
-
-  const dispatch = useAppDispatch()
   const { validate } = useFormValidation()
   const navigate = useNavigate();
   const { sendRequest } = useApi()
@@ -139,9 +134,6 @@ const FormSignUp = () => {
     }
   }
 
-
-  // const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
   const backHandler = () => {
     navigate('/');
   }
@@ -184,8 +176,6 @@ const FormSignUp = () => {
             showConfirmPass={showConfirmPass}
             key={'su-confpass-inp-key'}
           ></ConfirmPassword>
-
-
 
           <Stack display={'flex'} flexDirection={'row'} gap={'2rem'} >
 
@@ -243,4 +233,5 @@ const FormSignUp = () => {
   )
 
 }
+
 export default FormSignUp

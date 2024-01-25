@@ -1,9 +1,10 @@
 import { FC, useState } from "react";
+import { Box, Button, Divider, Fade, Modal, Stack, TextField, Typography } from "@mui/material"
 
-import { Box, Button, Divider, Fab, Fade, Modal, Stack, TextField, Typography } from "@mui/material"
+import useFormValidation from "./hooks/useFormValidation";
+
 import AddIcon from '@mui/icons-material/Add';
 import Backdrop from '@mui/material/Backdrop';
-import useFormValidation from "./useFormValidation";
 
 interface IAddCompanyModal {
   addCompanyHandler: (compName: string) => void
@@ -77,17 +78,6 @@ const AddCompanyModal: FC<IAddCompanyModal> = ({ addCompanyHandler }) => {
 
   return (
     <>
-      {/* <Fab color="primary" aria-label="add-car" size="small"
-        onClick={() => handleOpen()}
-        sx={{
-          backgroundColor: '#078c75', marginTop: '1rem', zIndex: 100,
-          '&:hover': {
-            bgcolor: 'rgb(7, 140, 117, 0.5)',
-          }
-        }}
-      >
-        <AddIcon />
-      </Fab> */}
       <Button
         onClick={() => handleOpen()}
         variant="outlined" startIcon={<AddIcon />}
@@ -167,4 +157,5 @@ const AddCompanyModal: FC<IAddCompanyModal> = ({ addCompanyHandler }) => {
     </>
   )
 }
+
 export default AddCompanyModal

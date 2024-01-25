@@ -1,10 +1,5 @@
-import React, { Dispatch, FC, SetStateAction } from 'react';
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import { Dispatch, FC, SetStateAction } from 'react';
+import { Backdrop, Box, Modal, Fade, Typography } from '@mui/material/';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -25,8 +20,7 @@ interface IRulesModal {
 
 
 const RulesModal: FC<IRulesModal> = ({ rulesOpen, setRulesOpen }) => {
-  // const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => setOpen(true);
+
   const handleClose = () => setRulesOpen(false);
 
   return (

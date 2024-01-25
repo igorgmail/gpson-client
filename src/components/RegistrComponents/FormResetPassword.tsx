@@ -1,19 +1,18 @@
-import { Box, Button, Stack } from '@mui/material';
 import { useState } from 'react';
-
-import useFormValidation from './useFormValidation'
 import { useNavigate } from 'react-router-dom';
+import { Button, Stack } from '@mui/material';
+
+import useApi from './hooks/useApi';
+import useAlert from './hooks/useAlert';
+import useFormValidation from './hooks/useFormValidation'
+import API_ENDPOINTS from './utils/apiEndpoints';
+import { IRequestOptions } from './types/profilePageTypes';
 
 import FormWrap from './FormWrap';
 import EmailInput from './Components/EmailInput';
 import PasswordInput from './Components/PasswordInput';
-import GpsonImage from './Components/GpsonImage';
 import ConfirmPassword from './Components/ConfirmPassword';
 import CustomPinInput from './Components/PinInput';
-import { IRequestOptions } from './types/profilePageTypes';
-import API_ENDPOINTS from './utils/apiEndpoints';
-import useApi from './hooks/useApi';
-import useAlert from './hooks/useAlert';
 
 const FormResetPassword = () => {
 
@@ -163,4 +162,5 @@ const FormResetPassword = () => {
     </>
   )
 }
+
 export default FormResetPassword

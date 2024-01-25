@@ -1,8 +1,6 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import CustomAlert from '../Components/CustomAlert';
-
-import { useAppDispatch, carsSettingsActions } from '../../../store';
 
 type AlertProps = {
   message?: string;

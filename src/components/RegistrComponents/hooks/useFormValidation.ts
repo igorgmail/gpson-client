@@ -43,6 +43,5 @@ export default function useFormValidation() {
 
   return { validate };
 
-
 }
 

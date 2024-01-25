@@ -1,29 +1,26 @@
 import { useEffect } from "react";
-import { Box, Stack } from "@mui/material"
+import { Box, Stack, Backdrop } from "@mui/material";
 
-import Backdrop from '@mui/material/Backdrop';
-
+// Хуки, утилиты, типы
 import useApi from "./hooks/useApi";
-import API_ENDPOINTS from "./utils/apiEndpoints"
-
-import { IRequestOptions } from "./types/profilePageTypes";
-
 import useAlert from "./hooks/useAlert";
 import useBackDrop from "./hooks/useBackdrop";
+import API_ENDPOINTS from "./utils/apiEndpoints";
+import { IRequestOptions } from "./types/profilePageTypes";
 import { useAppDispatch, useAppSelector } from "../../store";
 
-import { profileStoreActions } from "../../store/slices/profileSlice";
+// Компоненты
 import Loader from "./Components/Loader/Loader";
-import GpsonImage from "./Components/GpsonImage"
-import CompanyItem from "./TCompanyItem";
+import GpsonImage from "./Components/GpsonImage";
+import CompanyItem from "./CompanyItem";
 import AddCompanyModal from "./AddCompanyModal";
 
-const Companies = () => {
-  console.log('--Render Companies');
+// Действия и редьюсеры Redux
+import { profileStoreActions } from "../../store/slices/profileSlice";
 
+const Companies = () => {
 
   const companyStoreData = useAppSelector((store) => store.profileStore.companies)
-
   const dispatch = useAppDispatch()
 
   const { sendRequest } = useApi()
@@ -132,4 +129,5 @@ const Companies = () => {
     </>
   )
 }
+
 export default Companies
