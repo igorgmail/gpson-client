@@ -47,7 +47,7 @@ const SmFieldCars: FC<ISmFieldCarsProps> = ({ car }) => {
         stopBackDrop()
       } else {
         console.info("При удалении Авто с сервера пришли некорректные данные");
-        showAlert('Не удалось удалить точку', 'error')
+        showAlert('Не удалось удалить автомобиль', 'error')
       }
     }).catch((err) => {
       console.warn("ERROR, Ошибка при удалении Авто", err);

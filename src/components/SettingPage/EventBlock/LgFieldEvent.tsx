@@ -61,7 +61,7 @@ const LgFieldEvent: FC<IEventBlockProps> = ({ oneEvent }) => {
     const eventData: TEventForDialog = {
       event: 'REMOVE_EVENT',
       subjectid: event.event_id,
-      msg: `Будет удалена контрольная точка <br>${event.event_id}`
+      msg: `Будет удалено событие <br> Id события - ${event.event_id}`
     }
 
     return eventData
